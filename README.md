@@ -87,7 +87,7 @@ class OrderConfirmation extends Notification
         return [SendinblueSmsChannel::class];
     }
 
-    public function toMailjetSms($notifiable): SendTransacSms
+    public function toSendinblueEmail($notifiable): SendTransacSms
     {
         return (new SendTransacSms())
             ->setSender('YIELD')
