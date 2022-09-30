@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Laravel SendinBlue Notifier Test Suite">
+        <testsuite name="Laravel Sendinblue Notifier Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

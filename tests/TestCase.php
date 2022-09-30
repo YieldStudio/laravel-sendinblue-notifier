@@ -1,18 +1,14 @@
 <?php
 
-namespace YieldStudio\LaravelSendinBlueNotifier\Tests;
+namespace YieldStudio\LaravelSendinblueNotifier\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use YieldStudio\LaravelSendinBlueNotifier\SendinBlueNotifierServiceProvider;
+use YieldStudio\LaravelSendinblueNotifier\SendinblueNotifierServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
-        $serviceProviders = [
-            SendinBlueNotifierServiceProvider::class,
-        ];
-
-        return $serviceProviders;
+        return [SendinblueNotifierServiceProvider::class];
     }
 }

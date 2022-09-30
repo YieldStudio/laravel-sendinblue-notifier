@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace YieldStudio\LaravelSendinBlueNotifier;
+namespace YieldStudio\LaravelSendinblueNotifier;
 
 use GuzzleHttp\Client as GuzzleClient;
 use SendinBlue\Client\Api\TransactionalEmailsApi;
@@ -15,7 +15,7 @@ use SendinBlue\Client\Model\SendSmtpEmail;
 use SendinBlue\Client\Model\SendSmtpEmailSender;
 use SendinBlue\Client\Model\SendTransacSms;
 
-class SendinBlueService
+class SendinblueService
 {
     protected Configuration $config;
 
@@ -27,12 +27,10 @@ class SendinBlueService
     {
         if (array_key_exists('emailFrom', $options)) {
             $this->setEmailFrom($options['emailFrom']);
-            unset($options['emailFrom']);
         }
 
         if (array_key_exists('smsFrom', $options)) {
             $this->setSmsFrom($options['smsFrom']);
-            unset($options['smsFrom']);
         }
 
         $this->config = new Configuration();
@@ -40,52 +38,44 @@ class SendinBlueService
     }
 
     /**
-     * @param SendSmtpEmail $sendSmtpEmail
-     *
-     * @return CreateSmtpEmail|null
-     *
      * @throws ApiException
      */
-    public function sendEmail(SendSmtpEmail $sendSmtpEmail, array $options = []): ?CreateSmtpEmail
+    public function sendEmail(SendSmtpEmail $email, array $options = []): ?CreateSmtpEmail
     {
         $apiInstance = new TransactionalEmailsApi(
             new GuzzleClient(),
             $this->config
         );
 
-        if (!$sendSmtpEmail->getSender()) {
-            $sendSmtpEmail->setSender($this->emailFrom);
-        } else if (array_key_exists('emailFrom', $options)) {
-            $sendSmtpEmail->setSender($options['emailFrom']);
+        if (! $email->getSender()) {
+            $email->setSender($this->emailFrom);
+        } elseif (array_key_exists('emailFrom', $options)) {
+            $email->setSender($options['emailFrom']);
         }
 
-        return $apiInstance->sendTransacEmail($sendSmtpEmail);
+        return $apiInstance->sendTransacEmail($email);
     }
 
     /**
-     * @param SendTransacSms $sendTransacSms
-     *
-     * @return SendSms|null
-     *
      * @throws ApiException
      */
-    public function sendSms(SendTransacSms $sendTransacSms, array $options = []): ?SendSms
+    public function sendSms(SendTransacSms $sms, array $options = []): ?SendSms
     {
         $apiInstance = new TransactionalSMSApi(
             new GuzzleClient(),
             $this->config
         );
 
-        if (!$sendTransacSms->getSender()) {
-            $sendTransacSms->setSender($this->smsFrom);
-        } else if (array_key_exists('smsFrom', $options)) {
-            $sendTransacSms->setSender($options['smsFrom']);
+        if (! $sms->getSender()) {
+            $sms->setSender($this->smsFrom);
+        } elseif (array_key_exists('smsFrom', $options)) {
+            $sms->setSender($options['smsFrom']);
         }
 
-        return $apiInstance->sendTransacSms($sendTransacSms);
+        return $apiInstance->sendTransacSms($sms);
     }
 
-    public function setEmailFrom(array $emailFrom, string $name = ''): static
+    public function setEmailFrom(array $emailFrom): static
     {
         $sendSmtpEmailSender = new SendSmtpEmailSender($emailFrom);
 

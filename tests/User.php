@@ -1,6 +1,6 @@
 <?php
 
-namespace YieldStudio\LaravelSendinBlueNotifier\Tests;
+namespace YieldStudio\LaravelSendinblueNotifier\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;

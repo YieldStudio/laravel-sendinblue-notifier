@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace YieldStudio\LaravelSendinBlueNotifier;
+namespace YieldStudio\LaravelSendinblueNotifier;
 
 use Illuminate\Support\ServiceProvider;
 
-class SendinBlueNotifierServiceProvider extends ServiceProvider
+class SendinblueNotifierServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -21,14 +21,14 @@ class SendinBlueNotifierServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/sendinblue.php', 'sendinblue');
 
-        $this->app->bind(SendinBlueService::class, function () {
-            $identifier = config('sendinblue.identifier', 'api-key');
-            $key = config('sendinblue.key', '');
+        $this->app->bind(SendinblueService::class, function () {
+            $identifier = config('sendinblue.identifier');
+            $key = config('sendinblue.key');
             $emailFrom = config('sendinblue.emailFrom');
             $smsFrom = config('sendinblue.smsFrom');
             $options = config('sendinblue.options', []);
 
-            $instance = new SendinBlueService($identifier, $key, $options);
+            $instance = new SendinblueService($identifier, $key, $options);
 
             if (filled($emailFrom)) {
                 $instance->setEmailFrom($emailFrom);
@@ -44,6 +44,6 @@ class SendinBlueNotifierServiceProvider extends ServiceProvider
 
     public function provides(): array
     {
-        return [SendinBlueService::class];
+        return [SendinblueService::class];
     }
 }

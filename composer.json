@@ -1,6 +1,6 @@
 {
     "name": "yieldstudio/laravel-sendinblue-notifier",
-    "description": "Easily send SendinBlue transactional email and sms with Laravel notifier.",
+    "description": "Easily send Sendinblue transactional email and sms with Laravel notifier.",
     "type": "plugin",
     "keywords": [
         "yieldstudio",
@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "illuminate/database": "^9",
         "illuminate/support": "^9",
         "sendinblue/api-v3-sdk": "^8.3"
@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "YieldStudio\\LaravelSendinBlueNotifier\\": "src"
+            "YieldStudio\\LaravelSendinblueNotifier\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "YieldStudio\\LaravelSendinBlueNotifier\\Tests\\": "tests"
+            "YieldStudio\\LaravelSendinblueNotifier\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,7 +54,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "YieldStudio\\LaravelSendinBlueNotifier\\SendinBlueNotifierServiceProvider"
+              "SendinblueNotifierServiceProvider"
             ]
         }
     },

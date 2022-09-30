@@ -1,5 +1,5 @@
 <?php
 
-use YieldStudio\LaravelSendinBlueNotifier\Tests\TestCase;
+use YieldStudio\LaravelSendinblueNotifier\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
