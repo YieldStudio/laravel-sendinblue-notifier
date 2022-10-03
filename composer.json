@@ -19,6 +19,12 @@
             "email": "james@yieldstudio.fr",
             "homepage": "https://yieldstudio.fr",
             "role": "Developer"
+        },
+        {
+            "name": "David Tang",
+            "email": "david@yieldstudio.fr",
+            "homepage": "https://yieldstudio.fr",
+            "role": "Developer"
         }
     ],
     "require": {
