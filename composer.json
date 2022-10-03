@@ -54,7 +54,7 @@
     "extra": {
         "laravel": {
             "providers": [
-              "SendinblueNotifierServiceProvider"
+              "YieldStudio\\LaravelSendinblueNotifier\\SendinblueNotifierServiceProvider"
             ]
         }
     },
