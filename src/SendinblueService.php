@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Http;
 
 class SendinblueService
 {
-    protected SendinblueConfiguration $config;
-
     protected PendingRequest $http;
+
+    protected string $host = 'https://api.sendinblue.com/v3';
 
     protected ?array $emailFrom = null;
 
@@ -19,11 +19,8 @@ class SendinblueService
 
     public function __construct(string $identifier, string $key, array $options = [])
     {
-        $this->config = new SendinblueConfiguration();
-        $this->config->setApiKey($identifier, $key);
-
         if (array_key_exists('host', $options)) {
-            $this->config->setHost($options['host']);
+            $this->host = $options['host'];
         }
 
         if (array_key_exists('emailFrom', $options)) {
@@ -37,8 +34,8 @@ class SendinblueService
         $this->http = Http::withHeaders([
             'accept' => 'application/json',
             'content-type' => 'application/json',
-            'api-key' => $this->config->getApiKey($identifier),
-        ])->baseUrl($this->config->getHost());
+            $identifier => $key,
+        ])->baseUrl($this->host);
     }
 
     public function sendEmail(SendinblueEmailMessage $email, array $options = []): ?array
