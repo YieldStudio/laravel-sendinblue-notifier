@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Notifications\Notification;
-use SendinBlue\Client\Model\SendSmtpEmail;
+use YieldStudio\LaravelSendinblueNotifier\SendinblueEmailMessage;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueEmailChannel;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueService;
 use YieldStudio\LaravelSendinblueNotifier\Tests\User;
@@ -16,9 +16,9 @@ it('send notification via SendinblueEmailChannel should call SendinBlueService s
             return [SendinblueEmailChannel::class];
         }
 
-        public function toSendinblueEmail(User $notifiable): SendSmtpEmail
+        public function toSendinblueEmail(User $notifiable): SendinblueEmailMessage
         {
-            return new SendSmtpEmail();
+            return new SendinblueEmailMessage();
         }
     });
 });

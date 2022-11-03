@@ -4,27 +4,28 @@ declare(strict_types=1);
 
 namespace YieldStudio\LaravelSendinblueNotifier;
 
-use GuzzleHttp\Client as GuzzleClient;
-use SendinBlue\Client\Api\TransactionalEmailsApi;
-use SendinBlue\Client\Api\TransactionalSMSApi;
-use SendinBlue\Client\ApiException;
-use SendinBlue\Client\Configuration;
-use SendinBlue\Client\Model\CreateSmtpEmail;
-use SendinBlue\Client\Model\SendSms;
-use SendinBlue\Client\Model\SendSmtpEmail;
-use SendinBlue\Client\Model\SendSmtpEmailSender;
-use SendinBlue\Client\Model\SendTransacSms;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Facades\Http;
 
 class SendinblueService
 {
-    protected Configuration $config;
+    protected SendinblueConfiguration $config;
 
-    protected ?SendSmtpEmailSender $emailFrom = null;
+    protected PendingRequest $http;
+
+    protected ?array $emailFrom = null;
 
     protected ?string $smsFrom = null;
 
     public function __construct(string $identifier, string $key, array $options = [])
     {
+        $this->config = new SendinblueConfiguration();
+        $this->config->setApiKey($identifier, $key);
+
+        if (array_key_exists('host', $options)) {
+            $this->config->setHost($options['host']);
+        }
+
         if (array_key_exists('emailFrom', $options)) {
             $this->setEmailFrom($options['emailFrom']);
         }
@@ -33,53 +34,49 @@ class SendinblueService
             $this->setSmsFrom($options['smsFrom']);
         }
 
-        $this->config = new Configuration();
-        $this->config->setApiKey($identifier, $key);
+        $this->http = Http::withHeaders([
+            'accept' => 'application/json',
+            'content-type' => 'application/json',
+            'api-key' => $this->config->getApiKey($identifier),
+        ])->baseUrl($this->config->getHost());
     }
 
-    /**
-     * @throws ApiException
-     */
-    public function sendEmail(SendSmtpEmail $email, array $options = []): ?CreateSmtpEmail
+    public function sendEmail(SendinblueEmailMessage $email, array $options = []): ?array
     {
-        $apiInstance = new TransactionalEmailsApi(
-            new GuzzleClient(),
-            $this->config
-        );
-
-        if (! $email->getSender()) {
+        if (!$email->getSender()) {
             $email->setSender($this->emailFrom);
         } elseif (array_key_exists('emailFrom', $options)) {
             $email->setSender($options['emailFrom']);
         }
+        $response = $this->http->post('/smtp/email', $email->toArray());
 
-        return $apiInstance->sendTransacEmail($email);
+        if (! $response->successful()) {
+            throw new SendinblueException('SendinblueService:sendEmail() failed', $response->status());
+        }
+
+        return json_decode($response->body(), true);
     }
 
-    /**
-     * @throws ApiException
-     */
-    public function sendSms(SendTransacSms $sms, array $options = []): ?SendSms
+    public function sendSms(SendinblueSmsMessage $sms, array $options = []): ?array
     {
-        $apiInstance = new TransactionalSMSApi(
-            new GuzzleClient(),
-            $this->config
-        );
-
-        if (! $sms->getSender()) {
+        if (!$sms->getSender()) {
             $sms->setSender($this->smsFrom);
         } elseif (array_key_exists('smsFrom', $options)) {
             $sms->setSender($options['smsFrom']);
         }
 
-        return $apiInstance->sendTransacSms($sms);
+        $response = $this->http->post('/transactionalSMS/sms', $sms->toArray());
+
+        if (! $response->successful()) {
+            throw new SendinblueException('SendinblueService:sendSms() failed', $response->status());
+        }
+
+        return json_decode($response->body(), true);
     }
 
     public function setEmailFrom(array $emailFrom): static
     {
-        $sendSmtpEmailSender = new SendSmtpEmailSender($emailFrom);
-
-        $this->emailFrom = $sendSmtpEmailSender;
+        $this->emailFrom = $emailFrom;
 
         return $this;
     }

@@ -5,6 +5,7 @@ use Illuminate\Notifications\Notification;
 use SendinBlue\Client\Model\SendTransacSms;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueService;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueSmsChannel;
+use YieldStudio\LaravelSendinblueNotifier\SendinblueSmsMessage;
 use YieldStudio\LaravelSendinblueNotifier\Tests\User;
 
 it('send notification via SendinblueChannel should call SendinBlueService sendSms method', function () {
@@ -16,9 +17,9 @@ it('send notification via SendinblueChannel should call SendinBlueService sendSm
             return [SendinblueSmsChannel::class];
         }
 
-        public function toSendinblueSms(Model $notifiable): SendTransacSms
+        public function toSendinblueSms(Model $notifiable): SendinblueSmsMessage
         {
-            return new SendTransacSms();
+            return new SendinblueSmsMessage();
         }
     });
 });
