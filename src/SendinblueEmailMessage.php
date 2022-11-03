@@ -38,7 +38,7 @@ final class SendinblueEmailMessage
 
     public function setTo(array $to): SendinblueEmailMessage
     {
-        $this->to = [$to];
+        $this->to[] = $to;
 
         return $this;
     }
@@ -98,7 +98,7 @@ final class SendinblueEmailMessage
 
     public function setAttachment(array $attachment): SendinblueEmailMessage
     {
-        $this->attachment = $attachment;
+        $this->attachment[] = $attachment;
 
         return $this;
     }
