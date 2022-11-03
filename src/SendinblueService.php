@@ -43,7 +43,7 @@ class SendinblueService
 
     public function sendEmail(SendinblueEmailMessage $email, array $options = []): ?array
     {
-        if (!$email->getSender()) {
+        if (! $email->getSender()) {
             $email->setSender($this->emailFrom);
         } elseif (array_key_exists('emailFrom', $options)) {
             $email->setSender($options['emailFrom']);
@@ -59,7 +59,7 @@ class SendinblueService
 
     public function sendSms(SendinblueSmsMessage $sms, array $options = []): ?array
     {
-        if (!$sms->getSender()) {
+        if (! $sms->getSender()) {
             $sms->setSender($this->smsFrom);
         } elseif (array_key_exists('smsFrom', $options)) {
             $sms->setSender($options['smsFrom']);

@@ -17,12 +17,14 @@ final class SendinblueConfiguration
     public function setApiKey(string $apiKeyIdentifier, string $key): self
     {
         $this->apiKeys[$apiKeyIdentifier] = $key;
+
         return $this;
     }
 
     public function setHost(string $host): self
     {
         $this->host = $host;
+
         return $this;
     }
 
@@ -30,5 +32,4 @@ final class SendinblueConfiguration
     {
         return $this->host;
     }
-
 }

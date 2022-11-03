@@ -6,7 +6,6 @@ namespace YieldStudio\LaravelSendinblueNotifier;
 
 final class SendinblueSmsMessage
 {
-
     protected string $sender;
     protected string $recipient;
     protected string $content;
@@ -23,6 +22,7 @@ final class SendinblueSmsMessage
     public function setSender(string $sender): SendinblueSmsMessage
     {
         $this->sender = $sender;
+
         return $this;
     }
 
@@ -34,6 +34,7 @@ final class SendinblueSmsMessage
     public function setRecipient(string $recipient): SendinblueSmsMessage
     {
         $this->recipient = $recipient;
+
         return $this;
     }
 
@@ -45,6 +46,7 @@ final class SendinblueSmsMessage
     public function setContent(string $content): SendinblueSmsMessage
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -56,6 +58,7 @@ final class SendinblueSmsMessage
     public function setType(string $type): SendinblueSmsMessage
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -67,6 +70,7 @@ final class SendinblueSmsMessage
     public function setTag(string $tag): SendinblueSmsMessage
     {
         $this->tag = $tag;
+
         return $this;
     }
 
@@ -78,6 +82,7 @@ final class SendinblueSmsMessage
     public function setWebUrl(string $webUrl): SendinblueSmsMessage
     {
         $this->webUrl = $webUrl;
+
         return $this;
     }
 
@@ -89,6 +94,7 @@ final class SendinblueSmsMessage
     public function setUnicodeEnabled(bool $unicodeEnabled): SendinblueSmsMessage
     {
         $this->unicodeEnabled = $unicodeEnabled;
+
         return $this;
     }
 
@@ -103,11 +109,11 @@ final class SendinblueSmsMessage
         ];
 
         if (filled($this->tag)) {
-            $data['tag'] =  $this->tag;
+            $data['tag'] = $this->tag;
         }
 
         if (filled($this->webUrl)) {
-            $data['webUrl'] =  $this->webUrl;
+            $data['webUrl'] = $this->webUrl;
         }
 
         return $data;

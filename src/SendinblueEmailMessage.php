@@ -27,6 +27,7 @@ final class SendinblueEmailMessage
     public function setSender(array $sender): SendinblueEmailMessage
     {
         $this->sender = $sender;
+
         return $this;
     }
 
@@ -38,6 +39,7 @@ final class SendinblueEmailMessage
     public function setTo(array $to): SendinblueEmailMessage
     {
         $this->to = [$to];
+
         return $this;
     }
 
@@ -49,6 +51,7 @@ final class SendinblueEmailMessage
     public function setBcc(array $bcc): SendinblueEmailMessage
     {
         $this->bcc = $bcc;
+
         return $this;
     }
 
@@ -60,6 +63,7 @@ final class SendinblueEmailMessage
     public function setCc(array $cc): SendinblueEmailMessage
     {
         $this->cc = $cc;
+
         return $this;
     }
 
@@ -71,6 +75,7 @@ final class SendinblueEmailMessage
     public function setSubject(string $subject): SendinblueEmailMessage
     {
         $this->subject = $subject;
+
         return $this;
     }
 
@@ -82,6 +87,7 @@ final class SendinblueEmailMessage
     public function setReplyTo(array $replyTo): SendinblueEmailMessage
     {
         $this->replyTo = $replyTo;
+
         return $this;
     }
 
@@ -93,6 +99,7 @@ final class SendinblueEmailMessage
     public function setAttachment(array $attachment): SendinblueEmailMessage
     {
         $this->attachment = $attachment;
+
         return $this;
     }
 
@@ -104,6 +111,7 @@ final class SendinblueEmailMessage
     public function setHeaders(array $headers): SendinblueEmailMessage
     {
         $this->headers = $headers;
+
         return $this;
     }
 
@@ -115,6 +123,7 @@ final class SendinblueEmailMessage
     public function setTemplateId(int $templateId): SendinblueEmailMessage
     {
         $this->templateId = $templateId;
+
         return $this;
     }
 
@@ -126,6 +135,7 @@ final class SendinblueEmailMessage
     public function setHtmlContent(string $htmlContent): SendinblueEmailMessage
     {
         $this->htmlContent = $htmlContent;
+
         return $this;
     }
 
@@ -137,6 +147,7 @@ final class SendinblueEmailMessage
     public function setTextContent(string $textContent): SendinblueEmailMessage
     {
         $this->textContent = $textContent;
+
         return $this;
     }
 
@@ -148,6 +159,7 @@ final class SendinblueEmailMessage
     public function setParams(array $params): SendinblueEmailMessage
     {
         $this->params = $params;
+
         return $this;
     }
 
@@ -162,39 +174,39 @@ final class SendinblueEmailMessage
         ];
 
         if (filled($this->subject)) {
-            $data['subject'] =  $this->subject;
+            $data['subject'] = $this->subject;
         }
 
         if (filled($this->replyTo)) {
-            $data['replyTo'] =  $this->replyTo;
+            $data['replyTo'] = $this->replyTo;
         }
 
         if (filled($this->headers)) {
-            $data['headers'] =  $this->headers;
+            $data['headers'] = $this->headers;
         }
 
         if (filled($this->params)) {
-            $data['params'] =  $this->params;
+            $data['params'] = $this->params;
         }
 
         if (filled($this->htmlContent)) {
-            $data['htmlContent'] =  $this->htmlContent;
+            $data['htmlContent'] = $this->htmlContent;
         }
 
         if (filled($this->textContent)) {
-            $data['textContent'] =  $this->textContent;
+            $data['textContent'] = $this->textContent;
         }
 
         if (filled($this->cc)) {
-            $data['cc'] =  $this->cc;
+            $data['cc'] = $this->cc;
         }
 
         if (filled($this->bcc)) {
-            $data['bcc'] =  $this->bcc;
+            $data['bcc'] = $this->bcc;
         }
 
         if (filled($this->attachment)) {
-            $data['attachment'] =  $this->attachment;
+            $data['attachment'] = $this->attachment;
         }
 
         return $data;
