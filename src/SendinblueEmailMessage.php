@@ -19,9 +19,16 @@ final class SendinblueEmailMessage
     public ?array $headers = null;
     public ?array $params = null;
 
-    public function from(array $from): SendinblueEmailMessage
+    public function from($name, $email = null): SendinblueEmailMessage
     {
-        $this->from = $from;
+        if (is_array($name)) {
+            $this->from = $name;
+        } else {
+            $this->from = [
+                'name' => $name,
+                'email' => $email,
+            ];
+        }
 
         return $this;
     }
@@ -89,9 +96,16 @@ final class SendinblueEmailMessage
         return $this;
     }
 
-    public function replyTo(array $replyTo): SendinblueEmailMessage
+    public function replyTo($name, $email = null): SendinblueEmailMessage
     {
-        $this->replyTo = $replyTo;
+        if (is_array($name)) {
+            $this->replyTo = $name;
+        } else {
+            $this->replyTo = [
+                'name' => $name,
+                'email' => $email,
+            ];
+        }
 
         return $this;
     }
