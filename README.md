@@ -45,8 +45,7 @@ namespace App\Notifications;
 
 use Illuminate\Notifications\Notification;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueEmailChannel;
-use SendinBlue\Client\Model\SendSmtpEmail;
-use SendinBlue\Client\Model\SendSmtpEmailTo;
+use YieldStudio\LaravelSendinblueNotifier\SendinblueEmailMessage;
 
 class OrderConfirmation extends Notification
 {
@@ -55,16 +54,12 @@ class OrderConfirmation extends Notification
         return [SendinblueEmailChannel::class];
     }
 
-    public function toSendinblueEmail($notifiable): SendSmtpEmail
+    public function toSendinblueEmail($notifiable): SendinblueEmailMessage
     {
-        $sendSmtpEmailTo = (new SendSmtpEmailTo())
-            ->setName($notifiable->firstname)
-            ->setEmail($notifiable->email);
-
-        return (new SendSmtpEmail())
-            ->setTemplateId(1)
-            ->setTo([$sendSmtpEmailTo])
-            ->setParams((object) ['order_ref' => 'N°0000001']);
+        return (new SendinblueEmailMessage())
+            ->templateId(1)
+            ->to($notifiable->firstname, $notifiable->email)
+            ->params(['order_ref' => 'N°0000001']);
     }
 }
 ```
@@ -78,7 +73,7 @@ namespace App\Notifications;
 
 use Illuminate\Notifications\Notification
 use YieldStudio\LaravelSendinblueNotifier\SendinblueSmsChannel;
-use SendinBlue\Client\Model\SendTransacSms;
+use YieldStudio\LaravelSendinblueNotifier\SendinblueSmsMessage;
 
 class OrderConfirmation extends Notification
 {
@@ -87,12 +82,12 @@ class OrderConfirmation extends Notification
         return [SendinblueSmsChannel::class];
     }
 
-    public function toSendinblueEmail($notifiable): SendTransacSms
+    public function toSendinblueEmail($notifiable): SendinblueSmsMessage
     {
-        return (new SendTransacSms())
-            ->setSender('YIELD')
-            ->setRecipient('+33626631711')
-            ->setContent('Your order is confirmed.');
+        return (new SendinblueSmsMessage())
+            ->from('YIELD')
+            ->to('+33626631711')
+            ->content('Your order is confirmed.');
     }
 }
 ```
