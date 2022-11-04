@@ -7,7 +7,6 @@ namespace YieldStudio\LaravelSendinblueNotifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
-use SendinBlue\Client\ApiException;
 
 class SendinblueEmailChannel
 {
@@ -16,7 +15,7 @@ class SendinblueEmailChannel
     }
 
     /**
-     * @throws ApiException
+     * @throws SendinblueException
      */
     public function send(Model|AnonymousNotifiable $notifiable, Notification $notification): void
     {
