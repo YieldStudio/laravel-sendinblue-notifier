@@ -6,92 +6,57 @@ namespace YieldStudio\LaravelSendinblueNotifier;
 
 final class SendinblueSmsMessage
 {
-    protected string $sender;
-    protected string $recipient;
-    protected string $content;
-    protected string $type = 'transactional';
-    protected ?string $tag = null;
-    protected ?string $webUrl = null;
-    protected bool $unicodeEnabled = true;
+    public string $from;
+    public string $to;
+    public string $content;
+    public string $type = 'transactional';
+    public ?string $tag = null;
+    public ?string $webUrl = null;
+    public bool $unicodeEnabled = true;
 
-    public function getSender(): string
+    public function from(string $from): SendinblueSmsMessage
     {
-        return $this->sender;
-    }
-
-    public function setSender(string $sender): SendinblueSmsMessage
-    {
-        $this->sender = $sender;
+        $this->from = $from;
 
         return $this;
     }
 
-    public function getRecipient(): string
+    public function to(string $to): SendinblueSmsMessage
     {
-        return $this->recipient;
-    }
-
-    public function setRecipient(string $recipient): SendinblueSmsMessage
-    {
-        $this->recipient = $recipient;
+        $this->to = $to;
 
         return $this;
     }
 
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): SendinblueSmsMessage
+    public function content(string $content): SendinblueSmsMessage
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): SendinblueSmsMessage
+    public function type(string $type): SendinblueSmsMessage
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getTag(): string
-    {
-        return $this->tag;
-    }
-
-    public function setTag(string $tag): SendinblueSmsMessage
+    public function tag(string $tag): SendinblueSmsMessage
     {
         $this->tag = $tag;
 
         return $this;
     }
 
-    public function getWebUrl(): string
-    {
-        return $this->webUrl;
-    }
-
-    public function setWebUrl(string $webUrl): SendinblueSmsMessage
+    public function webUrl(string $webUrl): SendinblueSmsMessage
     {
         $this->webUrl = $webUrl;
 
         return $this;
     }
 
-    public function getUnicodeEnabled(): bool
-    {
-        return $this->unicodeEnabled;
-    }
-
-    public function setUnicodeEnabled(bool $unicodeEnabled): SendinblueSmsMessage
+    public function unicodeEnabled(bool $unicodeEnabled): SendinblueSmsMessage
     {
         $this->unicodeEnabled = $unicodeEnabled;
 
@@ -101,8 +66,8 @@ final class SendinblueSmsMessage
     public function toArray(): array
     {
         $data = [
-            'sender' => $this->sender,
-            'recipient' => $this->recipient,
+            'sender' => $this->from,
+            'recipient' => $this->to,
             'content' => $this->content,
             'type' => $this->type,
             'unicodeEnabled' => $this->unicodeEnabled,

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
-use SendinBlue\Client\Model\SendTransacSms;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueService;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueSmsChannel;
 use YieldStudio\LaravelSendinblueNotifier\SendinblueSmsMessage;

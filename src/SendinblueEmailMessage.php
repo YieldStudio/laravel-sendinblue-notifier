@@ -6,157 +6,125 @@ namespace YieldStudio\LaravelSendinblueNotifier;
 
 final class SendinblueEmailMessage
 {
-    protected array $sender = [];
-    protected array $to = [];
-    protected int $templateId;
-    protected ?string $subject = null;
-    protected ?array $attachment = null;
-    protected ?array $bcc = null;
-    protected ?array $cc = null;
-    protected ?string $htmlContent = null;
-    protected ?string $textContent = null;
-    protected ?array $replyTo = null;
-    protected ?array $headers = null;
-    protected ?array $params = null;
+    public array $from = [];
+    public array $to = [];
+    public array $attachment = [];
+    public array $bcc = [];
+    public array $cc = [];
+    public int $templateId;
+    public ?string $subject = null;
+    public ?string $htmlContent = null;
+    public ?string $textContent = null;
+    public ?array $replyTo = null;
+    public ?array $headers = null;
+    public ?array $params = null;
 
-    public function getSender(): array
+    public function from(array $from): SendinblueEmailMessage
     {
-        return $this->sender;
-    }
-
-    public function setSender(array $sender): SendinblueEmailMessage
-    {
-        $this->sender = $sender;
+        $this->from = $from;
 
         return $this;
     }
 
-    public function getTo(): array
+    public function to($name, $email = null): SendinblueEmailMessage
     {
-        return $this->to;
-    }
-
-    public function setTo(array $to): SendinblueEmailMessage
-    {
-        $this->to[] = $to;
+        if (is_array($name)) {
+            $this->to = $name;
+        } else {
+            $this->to[] = [
+                'name' => $name,
+                'email' => $email,
+            ];
+        }
 
         return $this;
     }
 
-    public function getBcc(): array
+    public function bcc($name, $email = null): SendinblueEmailMessage
     {
-        return $this->bcc;
-    }
-
-    public function setBcc(array $bcc): SendinblueEmailMessage
-    {
-        $this->bcc = $bcc;
+        if (is_array($name)) {
+            $this->bcc = $name;
+        } else {
+            $this->bcc[] = [
+                'name' => $name,
+                'email' => $email,
+            ];
+        }
 
         return $this;
     }
 
-    public function getCc(): array
+    public function cc($name, $email = null): SendinblueEmailMessage
     {
-        return $this->cc;
-    }
-
-    public function setCc(array $cc): SendinblueEmailMessage
-    {
-        $this->cc = $cc;
+        if (is_array($name)) {
+            $this->cc = $name;
+        } else {
+            $this->cc[] = [
+                'name' => $name,
+                'email' => $email,
+            ];
+        }
 
         return $this;
     }
 
-    public function getSubject(): string
+    public function attachment($name, $content = null): SendinblueEmailMessage
     {
-        return $this->subject;
+        if (is_array($name)) {
+            $this->attachment = $name;
+        } else {
+            $this->attachment[] = [
+                'name' => $name,
+                'content' => $content,
+            ];
+        }
+
+        return $this;
     }
 
-    public function setSubject(string $subject): SendinblueEmailMessage
+    public function subject(string $subject): SendinblueEmailMessage
     {
         $this->subject = $subject;
 
         return $this;
     }
 
-    public function getReplyTo(): array
-    {
-        return $this->replyTo;
-    }
-
-    public function setReplyTo(array $replyTo): SendinblueEmailMessage
+    public function replyTo(array $replyTo): SendinblueEmailMessage
     {
         $this->replyTo = $replyTo;
 
         return $this;
     }
 
-    public function getAttachment(): array
-    {
-        return $this->attachment;
-    }
-
-    public function setAttachment(array $attachment): SendinblueEmailMessage
-    {
-        $this->attachment[] = $attachment;
-
-        return $this;
-    }
-
-    public function getHeaders(): array
-    {
-        return $this->headers;
-    }
-
-    public function setHeaders(array $headers): SendinblueEmailMessage
+    public function headers(array $headers): SendinblueEmailMessage
     {
         $this->headers = $headers;
 
         return $this;
     }
 
-    public function getTemplateId(): int
-    {
-        return $this->templateId;
-    }
-
-    public function setTemplateId(int $templateId): SendinblueEmailMessage
+    public function templateId(int $templateId): SendinblueEmailMessage
     {
         $this->templateId = $templateId;
 
         return $this;
     }
 
-    public function getHtmlContent(): string
-    {
-        return $this->htmlContent;
-    }
-
-    public function setHtmlContent(string $htmlContent): SendinblueEmailMessage
+    public function htmlContent(string $htmlContent): SendinblueEmailMessage
     {
         $this->htmlContent = $htmlContent;
 
         return $this;
     }
 
-    public function getTextContent(): string
-    {
-        return $this->textContent;
-    }
-
-    public function setTextContent(string $textContent): SendinblueEmailMessage
+    public function textContent(string $textContent): SendinblueEmailMessage
     {
         $this->textContent = $textContent;
 
         return $this;
     }
 
-    public function getParams(): array
-    {
-        return $this->params;
-    }
-
-    public function setParams(array $params): SendinblueEmailMessage
+    public function params(array $params): SendinblueEmailMessage
     {
         $this->params = $params;
 
@@ -166,7 +134,7 @@ final class SendinblueEmailMessage
     public function toArray(): array
     {
         $data = [
-            'sender' => $this->sender,
+            'sender' => $this->from,
             'to' => $this->to,
             'templateId' => $this->templateId,
             'headers' => $this->headers,

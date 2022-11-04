@@ -40,10 +40,10 @@ class SendinblueService
 
     public function sendEmail(SendinblueEmailMessage $email, array $options = []): ?array
     {
-        if (! $email->getSender()) {
-            $email->setSender($this->emailFrom);
+        if (blank($email->from)) {
+            $email->from($this->emailFrom);
         } elseif (array_key_exists('emailFrom', $options)) {
-            $email->setSender($options['emailFrom']);
+            $email->from($options['emailFrom']);
         }
         $response = $this->http->post('/smtp/email', $email->toArray());
 
@@ -56,10 +56,10 @@ class SendinblueService
 
     public function sendSms(SendinblueSmsMessage $sms, array $options = []): ?array
     {
-        if (! $sms->getSender()) {
-            $sms->setSender($this->smsFrom);
+        if (blank($sms->from)) {
+            $sms->from($this->smsFrom);
         } elseif (array_key_exists('smsFrom', $options)) {
-            $sms->setSender($options['smsFrom']);
+            $sms->from($options['smsFrom']);
         }
 
         $response = $this->http->post('/transactionalSMS/sms', $sms->toArray());
