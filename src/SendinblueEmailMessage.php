@@ -151,7 +151,6 @@ final class SendinblueEmailMessage
             'sender' => $this->from,
             'to' => $this->to,
             'templateId' => $this->templateId,
-            'headers' => $this->headers,
             'params' => $this->params,
         ];
 
