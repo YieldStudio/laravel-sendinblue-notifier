@@ -6,7 +6,7 @@ Easily send Sendinblue transactional email and sms with Laravel notifier.
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/yieldstudio/laravel-sendinblue-notifier/tests?style=flat-square)](https://github.com/yieldstudio/laravel-sendinblue-notifier/actions/workflows/tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/yieldstudio/laravel-sendinblue-notifier?style=flat-square)](https://packagist.org/packages/yieldstudio/laravel-sendinblue-notifier)
 
-> L’identifiant de version majeure zéro (0.y.z) est destiné au développement initial. Tout ou partie peut être modifié à tout moment. L’API publique ne devrait pas être considérée comme stable.
+> Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
 
 ## Installation
 
