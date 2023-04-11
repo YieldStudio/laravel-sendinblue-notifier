@@ -4,6 +4,14 @@ All notable changes to `laravel-sendinblue-notifier` will be documented in this 
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 1.0.2 - 2023-04-11
+
+### What's Changed
+
+- Laravel 10 support by @dtangdev in https://github.com/YieldStudio/laravel-sendinblue-notifier/pull/5
+
+**Full Changelog**: https://github.com/YieldStudio/laravel-sendinblue-notifier/compare/1.0.1...1.0.2
+
 ## 1.0.1 - 2022-11-07
 
 ### What's Changed
