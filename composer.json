@@ -35,7 +35,7 @@
     "require-dev": {
         "ciareis/bypass": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.8",
-        "orchestra/testbench": "7.*",
+        "orchestra/testbench": "^7.22|^8.1",
         "pestphp/pest": "^1.21",
         "phpunit/phpunit": "^9.1"
     },
