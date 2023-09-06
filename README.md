@@ -82,7 +82,7 @@ class OrderConfirmation extends Notification
         return [SendinblueSmsChannel::class];
     }
 
-    public function toSendinblueEmail($notifiable): SendinblueSmsMessage
+    public function toSendinblueSms($notifiable): SendinblueSmsMessage
     {
         return (new SendinblueSmsMessage())
             ->from('YIELD')
