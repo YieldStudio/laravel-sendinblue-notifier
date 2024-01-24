@@ -1,5 +1,7 @@
 # laravel-sendinblue-notifier
 
+⚠️ This package is deprecated in favor of [laravel-brevo-notifier](https://github.com/YieldStudio/laravel-brevo-notifier)
+
 Easily send Sendinblue transactional email and sms with Laravel notifier.
 
 [![Latest Version](https://img.shields.io/github/release/yieldstudio/laravel-sendinblue-notifier?style=flat-square)](https://github.com/yieldstudio/laravel-sendinblue-notifier/releases)
